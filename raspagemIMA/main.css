@@ -1,0 +1,76 @@
+/* GERAL */
+hr{
+    padding: 0px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    border-color: grey;
+}
+
+#painelGraficos{
+    margin-top: 10px;
+}
+
+.card-header{
+    background-color: rgb(233,236,239);
+    padding-left: 5px !important;
+    padding: 0px;
+}
+
+.card{
+    margin-bottom: 5px;
+}
+
+.btnFramework{
+    width: 40px;
+    height: 40px;
+    border-style: none;
+    margin-left: 2.5px;
+    margin-right: 2.5px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40px;
+}
+
+#btnBootstrap{
+    background-image: url('imagens/bootstrap.png');
+}
+
+#btnSemantic{
+    background-image: url('imagens/semantic.png');
+    background-size: 30px;
+}
+
+#btnMaterialize{
+    background-image: url('imagens/materialize.png');
+    background-size: 45px;
+}
+
+/* BOOTSTRAP */
+.bodyBootstrap{
+    padding: 10px;
+}
+
+#divScrapIMABootstrap, .input-group{
+    padding: 10px;
+}
+
+/* SEMANTIC */
+.bodySemantic, #divScrapIMASemantic{
+    padding: 10px;
+}
+.borderCabecalhoSemantic{
+    border: 1px gray solid;
+    border-radius: 5px;  
+
+}
+
+/* SEMANTIC */
+.bodyMaterialize, #divScrapIMAMaterialize{
+    padding: 10px;
+}
+.borderCabecalhoMaterialize{
+    border: 1px gray solid;
+    border-radius: 5px;  
+
+}
