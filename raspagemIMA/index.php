@@ -1,4 +1,4 @@
-<?include ("curl_simpleDom.php");?>
+<?php include ("curl_simpleDom.php");?>
 
 <!DOCTYPE html>
 <html>
@@ -41,7 +41,6 @@
             <!--CND - FONTAWESOME -->
         </head>
         <body class="bodyBootstrap">
-            <!-- Cabeçalho do formulario -->
             <div class="border border-dark rounded" id="divScrapIMABootstrap">
                 <div style ="margin-right: -0px;" class="row">
                     <div class='col-sm-12 col-md-8 col-lg-8 d-flex align-items-center'>
@@ -96,17 +95,11 @@
             <!-- Painel principal onde serão inseridos os graficos -->
             <div id="painelGraficos">
                 <?php 
-                    //Verificar se há um html carregado antes de prosseguir
                     if (!empty($html)){
-                        //Indice para contagem de tabelas
                         $iTables = 1;
-                        //Laço para pegar todas as tabelas
                         foreach ($html->find('.table') as $tables) {  
-                            //Condição para ignorar a primeira tabela do laço pois não será utilizada
                             if($iTables!=1){        
-                                //Condição para verificar se é uma tabela par ou impar, para saber como tratar os dados dela.
                                 if ($iTables%2) {
-                                    //Se for uma tabela par, serão carregados em variaveis os dados vindos das colunas ecoli, data, ar, agua e condicao
                                     $ecolis = array();
                                     foreach ($tables->find('td.ecoli') as $ecoli) {
                                         $ecolis [] = $ecoli->innertext;                 
@@ -142,24 +135,23 @@
                                             $somaImproprio++;
                                         }
                                     }
-                                    //Define um indicador unico para cada grupo de graficos
                                     $codBody = ($iTables-2);
                                     ?>
 
-                                    <div id="cardBody<? echo $codBody ?>" class="collapse" aria-labelledby="cardHead<? echo $codBody ?>">
+                                    <div id="cardBody<?php echo $codBody ?>" class="collapse" aria-labelledby="cardHead<?php echo $codBody ?>">
                                         <div class="card-body">
 
                                             <div class="row">
                                                 <div class="col-lg-6 offset-lg-0 col-md-8 offset-md-2 col-sm-8 offset-sm-2">
-                                                    <canvas id="ecoli<? echo $codBody ?>"></canvas>
+                                                    <canvas id="ecoli<?php echo $codBody ?>"></canvas>
                                                 </div>
 
                                                 <div class="col-lg-6 offset-lg-0 col-md-8 offset-md-2 col-sm-8 offset-sm-2">
-                                                    <canvas id="ar_agua<? echo $codBody ?>"></canvas>
+                                                    <canvas id="ar_agua<?php echo $codBody ?>"></canvas>
                                                 </div>
 
                                                 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-8 offset-sm-2">
-                                                    <canvas id="condicaoAgua<? echo $codBody ?>"></canvas>
+                                                    <canvas id="condicaoAgua<?php echo $codBody ?>"></canvas>
                                                 </div>
                                             </div>
 
@@ -169,8 +161,8 @@
 
                                 <br>
                                 <script>
-                                var canvasEcoli<? echo $codBody ?> = document.getElementById("ecoli<? echo $codBody ?>");
-                                var dataEcoli<? echo $codBody ?> = {
+                                var canvasEcoli<?php echo $codBody ?> = document.getElementById("ecoli<?php echo $codBody ?>");
+                                var dataEcoli<?php echo $codBody ?> = {
                                     labels: [
                                             <?php for($i=0; $i<sizeof($datas); $i++){
                                                 echo "\"".$datas[$i]."\",";
@@ -191,8 +183,8 @@
                                     ]
                                 };
 
-                                var chartEcoli<? echo $codBody ?> = Chart.Line(canvasEcoli<? echo $codBody ?>,{
-                                    data:dataEcoli<? echo $codBody ?>,
+                                var chartEcoli<?php echo $codBody ?> = Chart.Line(canvasEcoli<?php echo $codBody ?>,{
+                                    data:dataEcoli<?php echo $codBody ?>,
                                     options: {
                                     responsive: true,
                                     legend: {
@@ -211,9 +203,9 @@
                                 }
                                 });
 
-                                var canvasArAgua<? echo $codBody ?> = document.getElementById("ar_agua<? echo $codBody ?>");
+                                var canvasArAgua<?php echo $codBody ?> = document.getElementById("ar_agua<?php echo $codBody ?>");
 
-                                var dataArAgua<? echo $codBody ?> = {
+                                var dataArAgua<?php echo $codBody ?> = {
                                     labels: [                                            
                                             <?php for($i=0; $i<sizeof($datas); $i++){
                                                 echo "\"".$datas[$i]."\",";
@@ -248,8 +240,8 @@
                                     ]
                                 };
 
-                                var chartArAgua<? echo $codBody ?> = Chart.Line(canvasArAgua<? echo $codBody ?>,{
-                                    data:dataArAgua<? echo $codBody ?>,
+                                var chartArAgua<?php echo $codBody ?> = Chart.Line(canvasArAgua<?php echo $codBody ?>,{
+                                    data:dataArAgua<?php echo $codBody ?>,
                                     options: {
                                     responsive: true,
                                     legend: {
@@ -269,13 +261,13 @@
                                 }
                                 });
 
-                                var canvasCondicaoAgua<? echo $codBody ?> = document.getElementById("condicaoAgua<? echo $codBody ?>").getContext("2d");
+                                var canvasCondicaoAgua<?php echo $codBody ?> = document.getElementById("condicaoAgua<?php echo $codBody ?>").getContext("2d");
 
-                                var configCondicaoAgua<? echo $codBody ?> = {
+                                var configCondicaoAgua<?php echo $codBody ?> = {
                                     type: 'pie',
                                     data: {
                                         datasets: [{
-                                            data: [<? echo $somaProprio.",".$somaImproprio ?>],
+                                            data: [<?php echo $somaProprio.",".$somaImproprio ?>],
                                             backgroundColor: [
                                                 "rgba(52,58,64,0.2)",
                                                 "rgba(52,58,64,0.8)",
@@ -291,7 +283,7 @@
                                     }
                                 };
 
-                                new Chart(canvasCondicaoAgua<? echo $codBody ?>, configCondicaoAgua<? echo $codBody ?>);
+                                new Chart(canvasCondicaoAgua<?php echo $codBody ?>, configCondicaoAgua<?php echo $codBody ?>);
                        
                                 </script>
 
@@ -337,13 +329,13 @@
                                         <hr>
                                         <br>
 
-                                    <?}?>
+                                    <?php }?>
 
                                     <div class="card">
-                                        <div class="btn btn-dark" id="cardHead<?echo ($iTables-1)?>" type="button" data-toggle="collapse" data-target="#cardBody<?echo ($iTables-1)?>" aria-expanded="true" aria-controls="cardBody<?echo ($iTables-1)?>">
+                                        <div class="btn btn-dark" id="cardHead<?php echo ($iTables-1)?>" type="button" data-toggle="collapse" data-target="#cardBody<?php echo ($iTables-1)?>" aria-expanded="true" aria-controls="cardBody<?php echo ($iTables-1)?>">
                                             <div class="row justify-content-center">
                                                 <div class="col-12 text-justify">
-                                                    Ponto de coleta: <? echo $titulos[2]?> | Localização: <?echo $titulos[3]?>
+                                                    Ponto de coleta: <?php echo $titulos[2]?> | Localização: <?php echo $titulos[3]?>
                                                 </div>
                                             </div>
                                         </div>

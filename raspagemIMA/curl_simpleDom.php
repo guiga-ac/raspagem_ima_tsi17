@@ -1,7 +1,5 @@
 <?php 
-//Verifica se há post antes de prosseguir
     if (!empty($_POST)){
-    //Inclui a biblioteca simple_html_dom, utilizada para converter a resposta do curl e disponibilizar função de find
     include ("simple_html_dom.php");
 
     $curl = curl_init();

@@ -1,7 +1,6 @@
 $(document).ready(function(){
     getAnos();
     getMunicipiosHistorico();
-
    });
 
 //  $.ajaxSetup({
